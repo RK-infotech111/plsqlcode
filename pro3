@@ -5,3 +5,28 @@ customer_id number primary key,
 customer_name varchar2
 created_date
 );
+
+
+select e.empname, e.salary, e.dept_id from employee e
+where salary > (
+select avg(salary) from employee 
+where dept_id = e.dept_id);
+
+
+DECLARE
+v_test_ids number;
+
+BEGIN
+select test_id into v_test_ids from tests;
+
+for i IN 1..v_test_ids.count LOOP
+
+dbms_output.put_line(v_test_ids);
+
+end LOOP;
+end;
+
+delete from empolyee where dept =(select count(*) from emp group by dept having count(*)>1)
+
+select empname, dept, count(*) from employee
+group by empname, dept having count(*)>1;
